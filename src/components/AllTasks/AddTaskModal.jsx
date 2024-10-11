@@ -2,15 +2,19 @@
 
 import { useState } from "react";
 
-const AddTaskModal = ({ saveTask }) => {
-  const [task, setTask] = useState({
-    id: crypto.randomUUID(),
-    tittle: "",
-    description: "",
-    tags: [],
-    priority: "",
-    isFavorite: false,
-  });
+const AddTaskModal = ({ saveTask, taskToUpdate, onCloseClick }) => {
+  const [task, setTask] = useState(
+    taskToUpdate || {
+      id: crypto.randomUUID(),
+      tittle: "",
+      description: "",
+      tags: [],
+      priority: "",
+      isFavorite: false,
+    }
+  );
+
+  const isAdd = Object.is(taskToUpdate, null);
 
   const handelChange = (event) => {
     const name = event.target.name;
@@ -23,10 +27,13 @@ const AddTaskModal = ({ saveTask }) => {
 
   return (
     <>
-      <div className=" bg-[#000000] opacity-35 absolute top-0 left-0 w-full h-full z-10"></div>
-      <form className="z-20 absolute top-[5%] md:left-[10%] lg:left-[30%]  mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11">
+      <div
+        onClick={onCloseClick}
+        className=" bg-[#000000] opacity-35 absolute top-0 left-0 w-full h-full z-10"
+      ></div>
+      <form className="z-20 absolute top-[5%] md:left-[10%] lg:left-[18%] xl:left-[25%]  mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11">
         <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
-          Add New Task
+          {isAdd ? "Add New Task" : "Edit Task"}
         </h2>
 
         {/* <!-- inputs --> */}
@@ -84,19 +91,26 @@ const AddTaskModal = ({ saveTask }) => {
                 required
               >
                 <option value="">Select Priority</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
           </div>
         </div>
         {/* <!-- inputs ends --> */}
-        <div className="mt-16 flex justify-center lg:mt-20">
+        <div className="mt-16 flex justify-between lg:mt-20">
+          <button
+            type="submit"
+            className="rounded bg-red-600 px-4 py-2 cursor-pointer text-white transition-all hover:opacity-80"
+            onClick={onCloseClick}
+          >
+            Close
+          </button>
           <button
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 cursor-pointer text-white transition-all hover:opacity-80"
-            onClick={() => saveTask(task)}
+            onClick={() => saveTask(task, isAdd)}
           >
             Save
           </button>
