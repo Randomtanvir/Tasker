@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export const SearchSvg = () => {
   return (
     <svg
@@ -18,7 +19,7 @@ export const SearchSvg = () => {
   );
 };
 
-export const StarSvg = () => {
+export const StarSvg = ({ isFavorite }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +28,8 @@ export const StarSvg = () => {
       height="24"
       viewBox="0 0 24 24"
       strokeWidth="2"
-      stroke="yellow"
-      fill="yellow"
+      stroke={isFavorite ? "yellow" : "currentColor"}
+      fill={isFavorite ? "yellow" : "none"}
       strokeLinecap="round"
       strokeLinejoin="round"
     >

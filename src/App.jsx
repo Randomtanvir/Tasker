@@ -1,3 +1,4 @@
+import AddTaskModal from "./components/AllTasks/AddTaskModal";
 import TaskBoard from "./components/AllTasks/TaskBoard";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/HeroSection/Hero";
