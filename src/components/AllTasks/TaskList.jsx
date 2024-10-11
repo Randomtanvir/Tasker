@@ -3,7 +3,7 @@
 import { StarSvg } from "./Svg/index";
 
 // eslint-disable-next-line react/prop-types
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, onEdit }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -54,16 +54,6 @@ const TaskList = ({ tasks }) => {
                       </span>
                     </li>
                   ))}
-                  <li>
-                    <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#1C92FFB0] px-2.5 text-sm capitalize text-[#F4F5F6]">
-                      Python
-                    </span>
-                  </li>
-                  <li>
-                    <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#FE1A1AB5] px-2.5 text-sm capitalize text-[#F4F5F6]">
-                      API
-                    </span>
-                  </li>
                 </ul>
               </td>
               <td className="text-center">{task.priority}</td>

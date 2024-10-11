@@ -18,9 +18,11 @@ const TaskBoard = () => {
   const [tasks, setTasks] = useState([defaultTask]);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const handelAddTask = (t) => {
-    console.log(t);
+  const handelAddTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    setIsShowModal(false);
   };
+
   return (
     <section className="mb-20" id="tasks">
       {isShowModal && <AddTaskModal saveTask={handelAddTask} />}
